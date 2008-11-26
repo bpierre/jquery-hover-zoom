@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" />
+	<title>jQuery Hover Zoom</title>
+	<link rel="stylesheet" href="styles/doc.css" type="text/css" media="screen" />
+	<style type="text/css" media="screen">
+		h1 span{color:#af6b42;}
+		#container .hoverzoom{position:relative;zoom:1;}
+		#container .hoverzoom a{cursor:default;border:1px solid #000;outline:0;cursor:crosshair;}
+		#container .hoverzoom-preview{position:fixed;top:10px;right:10px;width:200px;margin:0;border:0;}
+		#container .hoverzoom-preview div{height:200px;margin:0;border:0;}
+		
+		#container .hoverzoom-loading{background:#ccc;}
+		
+		#container .hoverzoom-preview-1 div{background:url(styles/images/crosshair.png) no-repeat 50% 50%;}
+		#container .hoverzoom-preview-2 div{height:100px;}
+		
+		#container .hoverzoom-preview-3{width:400px;height:300px;}
+		
+		#container #example-2 a span{background:#ccc;opacity:0.5;}
+		
+		#container #example-3 a,
+		#container #example-4 a{background:#000;}
+		#container #example-3 a img.hover{filter:alpha(opacity=30);-moz-opacity:.3;opacity:.3;}
+		
+		#container #example-5 a span{border:1px solid #000;}
+	</style>
+	
+	<script type="text/javascript" src="scripts/jquery.js"></script>
+	<script type="text/javascript" src="scripts/jquery.hoverzoom.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+			$("#example-1 a[rel~=hoverzoom]").hoverzoom({
+				customPreviewElt: '<div class="hoverzoom-preview hoverzoom-preview-1"><div></div></div>',
+				previewCursor: "none",
+				preload: true
+			});
+			
+			$("#example-2 a[rel~=hoverzoom]").hoverzoom({
+				customPreviewElt: '<div class="hoverzoom-preview hoverzoom-preview-2"><div></div></div>',
+				previewCursor: "simple"
+			});
+			
+			$("#example-3 a[rel~=hoverzoom]").hoverzoom({
+				customPreviewElt: '<div class="hoverzoom-preview hoverzoom-preview-3"><div></div></div>',
+				previewCursor: "mask"
+			});
+			
+			$("#example-4 a[rel~=hoverzoom]").hoverzoom({
+				customPreviewElt: '<div class="hoverzoom-preview hoverzoom-preview-4"><div></div></div>',
+				previewCursor: "mask",
+				onMouseEnter: function(jElts) {
+					jElts.thumb.stop().animate({
+						opacity: .3
+					}, 200);
+				},
+				onMouseLeave: function(jElts) {
+					jElts.thumb.stop().animate({
+						opacity: 1
+					}, 200);
+				}
+			});
+			
+			$("#example-5 a[rel~=hoverzoom]").hoverzoom({
+				customPreviewElt: '<div class="hoverzoom-preview hoverzoom-preview-3"><div></div></div>',
+				previewCursor: "simple"
+			});
+			
+			
+			$("#example-6 a[rel~=hoverzoom]").hoverzoom({
+				customPreviewElt: '<div class="hoverzoom-preview hoverzoom-preview-6"><div></div></div>'
+			});
+			
+		});
+	</script>
+</head>
+<body>
+	<div id="container">
+		<h1>jQuery <span>Hover Zoom</span></h1>
+			<h2>Démonstration</h2>
+			
+			<div class="hoverzoom" id="example-1">
+				<p><a rel="hoverzoom" href="http://farm3.static.flickr.com/2384/1829964659_19c0eb64e0_o.jpg"><img src="http://farm3.static.flickr.com/2384/1829964659_92cb9fffb3_m.jpg" /></a></p>
+			</div>
+			
+			<div class="hoverzoom" id="example-2">
+				<p><a rel="hoverzoom" href="http://farm2.static.flickr.com/1266/1402810863_d41f360b2e_o.jpg"><img src="http://farm2.static.flickr.com/1266/1402810863_79dc5f1719_m.jpg" /></a></p>
+			</div>
+			
+			<div class="hoverzoom" id="example-5">
+				<p><a rel="hoverzoom" href="http://farm4.static.flickr.com/3255/2604564569_edaa556eae_o.jpg"><img src="http://farm4.static.flickr.com/3255/2604564569_98288f3aa9_m.jpg" /></a></p>
+			</div>
+			
+			<div class="hoverzoom" id="example-3">
+				<p><a rel="hoverzoom" href="http://farm1.static.flickr.com/62/161854643_90605c42bd_o.jpg"><img src="http://farm1.static.flickr.com/62/161854643_90605c42bd_m.jpg" /></a></p>
+			</div>
+			
+			<div class="hoverzoom" id="example-4">
+				<p><a rel="hoverzoom" href="http://farm1.static.flickr.com/27/63834502_33b441aedf_b.jpg"><img src="http://farm1.static.flickr.com/27/63834502_33b441aedf_m.jpg" /></a></p>
+			</div>
+			
+			<div class="hoverzoom" id="example-6">
+				<p><a rel="hoverzoom" href="http://farm4.static.flickr.com/3208/2604563959_a70b9050c3_o.jpg"><img src="http://farm4.static.flickr.com/3208/2604563959_d8d96a594d_m.jpg" /></a></p>
+			</div>
+			
+			<h2>Paramètres</h2>
+			
+			<h3>preload</h3>
+			<h4>true (default)</h4>
+			<h4>false</h4>
+			
+			<h3>previewCursor</h3>
+			<h4>"none" (default)</h4>
+			<h4>"simple"</h4>
+			<h4>"mask"</h4>
+	</div>
+</body>
+</html>
